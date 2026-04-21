@@ -6,17 +6,17 @@ import { useTheme } from './theme-provider';
 type CaseType = 'sentence' | 'lower' | 'upper' | 'capitalized' | 'alternating' | 'title' | 'inverse';
 
 const caseButtons: { id: CaseType; label: string; display: string; color: string }[] = [
-  { id: 'sentence',    label: 'Sentence case',     display: 'Sc', color: 'bg-orange-500' },
-  { id: 'lower',       label: 'lower case',         display: 'lc', color: 'bg-green-600' },
-  { id: 'upper',       label: 'UPPER CASE',         display: 'UC', color: 'bg-blue-600' },
-  { id: 'capitalized', label: 'Capitalized Case',   display: 'CC', color: 'bg-purple-600' },
-  { id: 'alternating', label: 'aLtErNaTiNg cAsE',  display: 'aC', color: 'bg-yellow-600' },
-  { id: 'title',       label: 'Title Case',         display: 'TC', color: 'bg-teal-600' },
-  { id: 'inverse',     label: 'InVeRsE CaSe',       display: 'iC', color: 'bg-pink-600' },
+  { id: 'sentence', label: 'Sentence case', display: 'Sc', color: 'bg-orange-500' },
+  { id: 'lower', label: 'lower case', display: 'lc', color: 'bg-green-600' },
+  { id: 'upper', label: 'UPPER CASE', display: 'UC', color: 'bg-blue-600' },
+  { id: 'capitalized', label: 'Capitalized Case', display: 'CC', color: 'bg-purple-600' },
+  { id: 'alternating', label: 'aLtErNaTiNg cAsE', display: 'aC', color: 'bg-yellow-600' },
+  { id: 'title', label: 'Title Case', display: 'TC', color: 'bg-teal-600' },
+  { id: 'inverse', label: 'InVeRsE CaSe', display: 'iC', color: 'bg-pink-600' },
 ];
 
 const minorWords = new Set([
-  'a','an','the','and','but','or','for','nor','on','at','to','by','in','of','up','as','is',
+  'a', 'an', 'the', 'and', 'but', 'or', 'for', 'nor', 'on', 'at', 'to', 'by', 'in', 'of', 'up', 'as', 'is',
 ]);
 
 function convertCase(text: string, type: CaseType): string {
@@ -179,11 +179,11 @@ export default function Home() {
               key={btn.id}
               onClick={() => handleCaseChange(btn.id)}
               className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition
-                ${activeCase === btn.id ? 'ring-2 ring-offset-2' : 'hover:brightness-110'}
-                ${btn.color} text-white`}
-              style={{
-                ringOffsetColor: isDark ? '#030712' : '#f8fafc',
-              }}
+    ${activeCase === btn.id
+                  ? `ring-2 ring-offset-2 ${isDark ? 'ring-offset-gray-950' : 'ring-offset-gray-100'}`
+                  : 'hover:brightness-110'
+                }
+    ${btn.color} text-white`}
             >
               <span className="text-xs font-bold opacity-80">{btn.display}</span>
               {btn.label}
