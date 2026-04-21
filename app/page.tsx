@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import { useTheme } from './theme-provider';
 
 type CaseType = 'sentence' | 'lower' | 'upper' | 'capitalized' | 'alternating' | 'title' | 'inverse';
 
@@ -21,53 +22,38 @@ const minorWords = new Set([
 function convertCase(text: string, type: CaseType): string {
   switch (type) {
     case 'sentence':
-      return text
-        .toLowerCase()
-        .replace(/(^\s*\w|[.!?]\s*\w)/g, (c) => c.toUpperCase());
-
+      return text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, (c) => c.toUpperCase());
     case 'lower':
       return text.toLowerCase();
-
     case 'upper':
       return text.toUpperCase();
-
     case 'capitalized':
       return text.replace(/\b\w/g, (c) => c.toUpperCase());
-
     case 'alternating':
-      return text
-        .split('')
-        .map((c, i) => (i % 2 === 0 ? c.toLowerCase() : c.toUpperCase()))
-        .join('');
-
+      return text.split('').map((c, i) => (i % 2 === 0 ? c.toLowerCase() : c.toUpperCase())).join('');
     case 'title':
-      return text
-        .toLowerCase()
-        .replace(/\b\w+/g, (word, index) =>
-          index === 0 || !minorWords.has(word)
-            ? word[0].toUpperCase() + word.slice(1)
-            : word
-        );
-
+      return text.toLowerCase().replace(/\b\w+/g, (word, index) =>
+        index === 0 || !minorWords.has(word) ? word[0].toUpperCase() + word.slice(1) : word
+      );
     case 'inverse':
-      return text
-        .split('')
-        .map((c) => (c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()))
-        .join('');
-
+      return text.split('').map((c) => (c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase())).join('');
     default:
       return text;
   }
 }
 
 function getStats(text: string) {
-  const characters = text.length;
-  const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
-  const lines = text === '' ? 0 : text.split('\n').length;
-  return { characters, words, lines };
+  return {
+    characters: text.length,
+    words: text.trim() === '' ? 0 : text.trim().split(/\s+/).length,
+    lines: text === '' ? 0 : text.split('\n').length,
+  };
 }
 
 export default function Home() {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   const [text, setText] = useState('');
   const [activeCase, setActiveCase] = useState<CaseType | null>(null);
   const [copied, setCopied] = useState(false);
@@ -103,27 +89,44 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-gray-950 text-white px-4 py-12">
+    <main
+      className="min-h-screen px-4 py-12"
+      style={{
+        paddingTop: 'calc(56px + 2.5rem)', // header height + original top padding
+        background: isDark ? '#030712' : '#f8fafc',
+        color: isDark ? '#fff' : '#0f172a',
+        transition: 'background 0.3s, color 0.3s',
+      }}
+    >
       <div className="max-w-3xl mx-auto">
 
-        {/* Header */}
+        {/* Header text */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-semibold text-white mb-2">
+          <h1 className="text-2xl font-semibold mb-2">
             Accidentally left the caps lock on?
           </h1>
-          <p className="text-gray-400 text-sm">
+          <p className="text-sm" style={{ color: isDark ? '#94a3b8' : '#64748b' }}>
             Simply enter your text and convert it to uppercase, lowercase, title case, and more.
           </p>
         </div>
 
-        {/* Textarea */}
-        <div className="bg-gray-900 rounded-xl border border-gray-800">
+        {/* Textarea box */}
+        <div
+          className="rounded-xl border"
+          style={{
+            background: isDark ? '#111827' : '#fff',
+            borderColor: isDark ? '#1f2937' : '#e2e8f0',
+            boxShadow: isDark ? 'none' : '0 1px 8px rgba(0,0,0,0.06)',
+            transition: 'background 0.3s, border-color 0.3s',
+          }}
+        >
           <textarea
-            className="w-full bg-transparent text-white placeholder-gray-600 p-4 text-sm rounded-xl resize-none focus:outline-none"
+            className="w-full bg-transparent placeholder-gray-500 p-4 text-sm rounded-xl resize-none focus:outline-none"
             rows={10}
             placeholder="Type or paste your content here"
             value={text}
             onChange={(e) => setText(e.target.value)}
+            style={{ color: isDark ? '#f1f5f9' : '#0f172a' }}
           />
 
           {/* Action bar */}
@@ -133,10 +136,11 @@ export default function Home() {
               <button
                 onClick={handleCopy}
                 title="Copy"
-                className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition"
+                className="p-2 rounded-lg transition"
+                style={{ color: isDark ? '#94a3b8' : '#64748b' }}
               >
                 {copied ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 ) : (
@@ -147,22 +151,14 @@ export default function Home() {
               </button>
 
               {/* Download */}
-              <button
-                onClick={handleDownload}
-                title="Download"
-                className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition"
-              >
+              <button onClick={handleDownload} title="Download" className="p-2 rounded-lg transition" style={{ color: isDark ? '#94a3b8' : '#64748b' }}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4" />
                 </svg>
               </button>
 
               {/* Clear */}
-              <button
-                onClick={handleClear}
-                title="Clear"
-                className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition"
-              >
+              <button onClick={handleClear} title="Clear" className="p-2 rounded-lg transition" style={{ color: isDark ? '#94a3b8' : '#64748b' }}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7h6m2 0H7m2-3h6a1 1 0 011 1v1H8V5a1 1 0 011-1z" />
                 </svg>
@@ -170,7 +166,7 @@ export default function Home() {
             </div>
 
             {/* Stats */}
-            <p className="text-xs text-gray-500">
+            <p className="text-xs" style={{ color: isDark ? '#4b5563' : '#94a3b8' }}>
               Characters: {characters} &nbsp;|&nbsp; Words: {words} &nbsp;|&nbsp; Lines: {lines}
             </p>
           </div>
@@ -183,10 +179,11 @@ export default function Home() {
               key={btn.id}
               onClick={() => handleCaseChange(btn.id)}
               className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition
-                ${activeCase === btn.id
-                  ? 'ring-2 ring-white ring-offset-2 ring-offset-gray-950'
-                  : 'hover:brightness-110'
-                } ${btn.color} text-white`}
+                ${activeCase === btn.id ? 'ring-2 ring-offset-2' : 'hover:brightness-110'}
+                ${btn.color} text-white`}
+              style={{
+                ringOffsetColor: isDark ? '#030712' : '#f8fafc',
+              }}
             >
               <span className="text-xs font-bold opacity-80">{btn.display}</span>
               {btn.label}

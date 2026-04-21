@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { ThemeProvider } from './theme-provider';
+import Header from './header';
+import Footer from './footer';
 
 export const metadata: Metadata = {
   title: 'ConvertCase — Free Online Text Case Converter',
@@ -39,8 +42,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <ThemeProvider>
+          <Header />
+          <div style={{ flex: 1 }}>{children}</div>
+          <Footer />
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
