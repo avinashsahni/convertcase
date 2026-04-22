@@ -1,6 +1,3 @@
-// lib/blogs.ts
-// 100 programmatic SEO blog posts for convertcase.in
-
 export type Blog = {
   slug: string;
   title: string;

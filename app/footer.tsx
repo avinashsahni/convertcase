@@ -71,7 +71,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <p style={{ fontSize: '0.75rem', margin: 0 }}>
-          Copyright ©2006–{new Date().getFullYear()} Convert Case Ltd &nbsp;|&nbsp; Last Updated (Apr {new Date().getFullYear()}) &nbsp;|&nbsp; Concept by{' '}
+          Copyright ©2025–{new Date().getFullYear()} ConvertCase.in  &nbsp;|&nbsp; Last Updated (Apr {new Date().getFullYear()}) &nbsp;|&nbsp; Concept by{' '}
           <a
             href="https://convertcase.in"
             style={{
