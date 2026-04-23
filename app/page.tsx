@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import Link from 'next/link';
 import { useTheme } from './theme-provider';
 
 type CaseType = 'sentence' | 'lower' | 'upper' | 'capitalized' | 'alternating' | 'title' | 'inverse';
@@ -88,11 +89,18 @@ export default function Home() {
     setActiveCase(null);
   }, []);
 
+  // ── shared style helpers ──
+  const surface = isDark ? '#111827' : '#fff';
+  const borderColor = isDark ? '#1f2937' : '#e2e8f0';
+  const borderStyle = `1px solid ${borderColor}`;
+  const textPrimary = isDark ? '#f1f5f9' : '#0f172a';
+  const textMuted = isDark ? '#94a3b8' : '#64748b';
+
   return (
     <main
       className="min-h-screen px-4 py-12"
       style={{
-        paddingTop: 'calc(56px + 2.5rem)', // header height + original top padding
+        paddingTop: 'calc(56px + 2.5rem)',
         background: isDark ? '#030712' : '#f8fafc',
         color: isDark ? '#fff' : '#0f172a',
         transition: 'background 0.3s, color 0.3s',
@@ -114,8 +122,8 @@ export default function Home() {
         <div
           className="rounded-xl border"
           style={{
-            background: isDark ? '#111827' : '#fff',
-            borderColor: isDark ? '#1f2937' : '#e2e8f0',
+            background: surface,
+            borderColor,
             boxShadow: isDark ? 'none' : '0 1px 8px rgba(0,0,0,0.06)',
             transition: 'background 0.3s, border-color 0.3s',
           }}
@@ -179,17 +187,61 @@ export default function Home() {
               key={btn.id}
               onClick={() => handleCaseChange(btn.id)}
               className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition
-    ${activeCase === btn.id
+                ${activeCase === btn.id
                   ? `ring-2 ring-offset-2 ${isDark ? 'ring-offset-gray-950' : 'ring-offset-gray-100'}`
                   : 'hover:brightness-110'
                 }
-    ${btn.color} text-white`}
+                ${btn.color} text-white`}
             >
               <span className="text-xs font-bold opacity-80">{btn.display}</span>
               {btn.label}
             </button>
           ))}
         </div>
+
+        {/* ── Related Tools ── */}
+        <section className="pt-12 pb-16" aria-labelledby="related-heading">
+          <h2
+            id="related-heading"
+            className="text-lg font-semibold mb-4 pb-3"
+            style={{ color: textPrimary, borderBottom: borderStyle }}
+          >
+            Related Tools
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {[
+              { href: '/uppercase-to-lowercase', icon: 'lc', title: 'Uppercase to Lowercase', desc: 'Convert capital letters to small letters instantly.' },
+              { href: '/lowercase-to-uppercase', icon: 'UC', title: 'Lowercase to Uppercase', desc: 'Transform small letters into all caps instantly.' },
+              { href: '/word-counter', icon: '##', title: 'Word Counter Tool', desc: 'Count words, characters, sentences, and more.' },
+              { href: '/title-case-converter', icon: 'Tt', title: 'Title Case Converter', desc: 'Capitalize the first letter of every word.' },
+              { href: '/sentence-case-converter', icon: 'Ss', title: 'Sentence Case Converter', desc: 'Capitalize only the first letter of each sentence.' },
+              { href: '/unicode-text-converter', icon: 'Uu', title: 'Unicode Text Converter', desc: 'Convert text to various Unicode formats.' },
+              { href: '/blog', icon: 'Bb', title: 'Blog', desc: 'Read the latest articles and updates.' },
+            ].map(({ href, icon, title, desc }) => (
+              <Link
+                key={href}
+                href={href}
+                className="flex items-center gap-3 rounded-lg p-4 no-underline transition hover:-translate-y-0.5"
+                style={{ background: surface, border: borderStyle, color: 'inherit' }}
+              >
+                <span
+                  className="w-10 h-10 min-w-10 rounded-lg flex items-center justify-center text-xs font-bold font-mono"
+                  style={{
+                    background: isDark ? '#1f2937' : '#f1f5f9',
+                    border: `1px solid ${isDark ? '#374151' : '#e2e8f0'}`,
+                    color: textMuted,
+                  }}
+                >
+                  {icon}
+                </span>
+                <div>
+                  <strong className="block text-sm mb-0.5" style={{ color: textPrimary }}>{title}</strong>
+                  <p className="text-xs m-0" style={{ color: textMuted }}>{desc}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
 
       </div>
     </main>
