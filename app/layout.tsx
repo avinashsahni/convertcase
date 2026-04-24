@@ -15,8 +15,13 @@ export const metadata: Metadata = {
     'lowercase converter',
     'title case',
     'sentence case',
+    'text case changer',
+    'online text tool',
     'convertcase.in',
   ],
+  applicationName: 'ConvertCase',
+  authors: [{ name: 'Avinash Sahni', url: 'https://convertcase.in' }],
+  category: 'Technology',
   metadataBase: new URL('https://convertcase.in'),
   openGraph: {
     title: 'ConvertCase — Free Online Text Case Converter',
@@ -25,11 +30,24 @@ export const metadata: Metadata = {
     siteName: 'ConvertCase',
     locale: 'en_IN',
     type: 'website',
+    images: [
+      {
+        // Create a 1200×630 branded image and place it at /public/og-image.png
+        url: 'https://convertcase.in/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'ConvertCase — Free Online Text Case Converter',
+      },
+    ],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'ConvertCase — Free Online Text Case Converter',
     description: 'Instantly convert your text to any case format. Free & no ads.',
+    // Update to your real Twitter/X handle, or remove these two lines if you don't have one
+    site: '@convertcase',
+    creator: '@convertcase',
+    images: ['https://convertcase.in/og-image.png'],
   },
   alternates: {
     canonical: 'https://convertcase.in',
@@ -37,7 +55,23 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
   },
+  icons: {
+    icon: '/favicon.ico',
+    // Add a 180×180 apple-touch-icon.png to /public for iOS home screen
+    apple: '/apple-touch-icon.png',
+  },
+  // After verifying in Google Search Console, uncomment and paste your code:
+  // verification: {
+  //   google: 'YOUR_GOOGLE_VERIFICATION_CODE',
+  // },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

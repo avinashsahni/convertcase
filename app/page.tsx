@@ -111,10 +111,10 @@ export default function Home() {
         {/* Header text */}
         <div className="text-center mb-8">
           <h1 className="text-2xl font-semibold mb-2">
-            Accidentally left the caps lock on?
+            Convert Case — Free Online Text Case Converter
           </h1>
           <p className="text-sm" style={{ color: isDark ? '#94a3b8' : '#64748b' }}>
-            Simply enter your text and convert it to uppercase, lowercase, title case, and more.
+            Accidentally left caps lock on? Paste your text below and instantly convert it to uppercase, lowercase, title case, sentence case, and more.
           </p>
         </div>
 
@@ -240,6 +240,43 @@ export default function Home() {
                 </div>
               </Link>
             ))}
+          </div>
+        </section>
+
+        {/* ── FAQ / About ── */}
+        <section className="pb-16" aria-labelledby="faq-heading">
+          <h2
+            id="faq-heading"
+            className="text-lg font-semibold mb-4 pb-3"
+            style={{ color: textPrimary, borderBottom: borderStyle }}
+          >
+            About ConvertCase
+          </h2>
+          <div style={{ color: textMuted, fontSize: '0.875rem', lineHeight: '1.75' }}>
+            <p style={{ marginBottom: '1rem' }}>
+              <strong style={{ color: textPrimary }}>ConvertCase</strong> is a free online text case converter tool that lets you instantly change the capitalisation of any text. Whether you need to fix a paragraph typed entirely in caps, format a blog post title, or create stylised alternating text, ConvertCase handles it in one click — no sign-up, no ads.
+            </p>
+
+            <h3 style={{ color: textPrimary, fontWeight: 600, marginBottom: '0.5rem' }}>What case formats are supported?</h3>
+            <ul style={{ paddingLeft: '1.25rem', marginBottom: '1rem', listStyleType: 'disc' }}>
+              <li><strong style={{ color: textPrimary }}>Sentence case</strong> — Capitalises only the first letter of each sentence.</li>
+              <li><strong style={{ color: textPrimary }}>lower case</strong> — Converts every character to small letters.</li>
+              <li><strong style={{ color: textPrimary }}>UPPER CASE</strong> — Converts every character to capital letters.</li>
+              <li><strong style={{ color: textPrimary }}>Capitalized Case</strong> — Capitalises the first letter of every word.</li>
+              <li><strong style={{ color: textPrimary }}>Title Case</strong> — Follows title-case rules, skipping minor words like "and", "the", "of".</li>
+              <li><strong style={{ color: textPrimary }}>aLtErNaTiNg cAsE</strong> — Alternates between lower and upper on every character.</li>
+              <li><strong style={{ color: textPrimary }}>InVeRsE CaSe</strong> — Flips the case of every character.</li>
+            </ul>
+
+            <h3 style={{ color: textPrimary, fontWeight: 600, marginBottom: '0.5rem' }}>Is ConvertCase free?</h3>
+            <p style={{ marginBottom: '1rem' }}>
+              Yes — completely free, forever. There are no premium tiers, no character limits, and no ads interrupting your workflow.
+            </p>
+
+            <h3 style={{ color: textPrimary, fontWeight: 600, marginBottom: '0.5rem' }}>Is my text stored or shared?</h3>
+            <p>
+              No. All conversions happen entirely in your browser. Your text is never sent to a server, stored, or shared with anyone.
+            </p>
           </div>
         </section>
 

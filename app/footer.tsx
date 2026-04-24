@@ -70,10 +70,11 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <p style={{ fontSize: '0.75rem', margin: 0 }}>
+          <p style={{ fontSize: '0.75rem', margin: 0 }}>
           Copyright ©2025–{new Date().getFullYear()} ConvertCase.in  &nbsp;|&nbsp; Last Updated (Apr {new Date().getFullYear()}) &nbsp;|&nbsp; Concept by{' '}
           <a
             href="https://convertcase.in"
+            rel="author"
             style={{
               color: isDark ? '#818cf8' : '#6366f1',
               textDecoration: 'underline',
