@@ -5,10 +5,16 @@ import Header from './header';
 import Footer from './footer';
 
 export const metadata: Metadata = {
-  title: 'ConvertCase — Free Online Text Case Converter',
+  title: 'Convert Case Online – Uppercase, Lowercase, Title Case Tool (Free)',
   description:
-    'Convert text to sentence case, lowercase, UPPERCASE, title case, alternating case and more. Free, instant, no ads.',
+    'Free online case converter. Instantly convert text to UPPERCASE, lowercase, title case, sentence case & more. Fast, simple, no signup required.',
   keywords: [
+    'convert case online',
+    'uppercase to lowercase',
+    'lowercase to uppercase',
+    'title case converter',
+    'sentence case converter',
+    'case converter tool',
     'convert case',
     'text converter',
     'uppercase converter',
@@ -32,7 +38,6 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        // Create a 1200×630 branded image and place it at /public/og-image.png
         url: 'https://convertcase.in/og-image.png',
         width: 1200,
         height: 630,
@@ -44,7 +49,6 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'ConvertCase — Free Online Text Case Converter',
     description: 'Instantly convert your text to any case format. Free & no ads.',
-    // Update to your real Twitter/X handle, or remove these two lines if you don't have one
     site: '@convertcase',
     creator: '@convertcase',
     images: ['https://convertcase.in/og-image.png'],
@@ -65,19 +69,32 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: '/favicon.ico',
-    // Add a 180×180 apple-touch-icon.png to /public for iOS home screen
     apple: '/apple-touch-icon.png',
   },
-  // After verifying in Google Search Console, uncomment and paste your code:
-  // verification: {
-  //   google: 'YOUR_GOOGLE_VERIFICATION_CODE',
-  // },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <body
+        suppressHydrationWarning  // ← fix added here
+        style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
+      >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              name: "Convert Case Online Tool",
+              url: "https://convertcase.in",
+              applicationCategory: "Utility",
+              operatingSystem: "All",
+              description:
+                "Free online tool to convert text between uppercase, lowercase, title case and more.",
+            }),
+          }}
+        />
         <ThemeProvider>
           <Header />
           <div style={{ flex: 1 }}>{children}</div>
