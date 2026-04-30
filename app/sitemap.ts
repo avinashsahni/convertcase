@@ -19,6 +19,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/camel-case-converter',
     '/word-counter',
     '/unicode-text-converter',
+    '/slug-case-converter',
+    '/snake-case-converter',
+    '/pascal-case-converter',
+    '/kebab-case-converter',
+    '/remove-duplicate-lines',
+    '/reverse-text',
   ];
 
   const blogEntries = blogs.map((b) => ({
