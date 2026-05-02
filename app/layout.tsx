@@ -3,6 +3,7 @@ import './globals.css';
 import { ThemeProvider } from './theme-provider';
 import Header from './header';
 import Footer from './footer';
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   title: 'Convert Case Online – Uppercase, Lowercase, Title Case Tool (Free)',
@@ -76,6 +77,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <Analytics />
       <body
         suppressHydrationWarning  // ← fix added here
         style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
