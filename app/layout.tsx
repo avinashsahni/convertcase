@@ -77,7 +77,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <Analytics />
       <body
         suppressHydrationWarning  // ← fix added here
         style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
@@ -102,6 +101,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div style={{ flex: 1 }}>{children}</div>
           <Footer />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
