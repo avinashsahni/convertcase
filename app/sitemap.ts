@@ -25,6 +25,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/kebab-case-converter',
     '/remove-duplicate-lines',
     '/reverse-text',
+    '/strikethrough-text-generator',
+    '/invisible-text-generator',
   ];
 
   const blogEntries = blogs.map((b) => ({
