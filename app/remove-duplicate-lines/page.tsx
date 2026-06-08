@@ -412,7 +412,7 @@ export default function RemoveDuplicateLines() {
             <p>No. All processing happens entirely in your browser. Nothing is sent to any server.</p>
           </div>
         </section>
-
+        
       </div>
     </main>
     </>

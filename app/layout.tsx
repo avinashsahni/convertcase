@@ -82,6 +82,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         suppressHydrationWarning  // ← fix added here
         style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
       >
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7953731201902695"
+     crossOrigin="anonymous"></script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
