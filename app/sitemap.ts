@@ -27,6 +27,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/reverse-text',
     '/strikethrough-text-generator',
     '/invisible-text-generator',
+    '/aesthetic-text-generator',
+    '/ascii-art-generator',
+    '/base64-decode-encode',
+    '/apa-citation-generator'
   ];
 
   const blogEntries = blogs.map((b) => ({
