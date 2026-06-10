@@ -1,7 +1,7 @@
 export const caesarMeta = {
   title: 'Caesar Cipher Encryption — Encode & Decode Caesar Shift (Free)',
   description:
-    'Free Caesar cipher tool. Encrypt or decrypt text using any ROT shift (1–25). Supports ROT13 with one click. Perfect for puzzles, CTF challenges, and learning classical cryptography.',
+    'Free Caesar cipher tool. Encrypt or decrypt text using any ROT shift (1-25). Supports ROT13 with one click. Perfect for puzzles, CTF challenges, and learning classical cryptography.',
   keywords: [
     'caesar cipher',
     'caesar cipher encoder',
