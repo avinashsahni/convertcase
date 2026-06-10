@@ -38,7 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/css-formatter',
     '/csv-to-json',
     '/cursed-text',
-    '/cute-font-generator',
+    '/cute-font-generator'
   ];
 
   const blogEntries = blogs.map((b) => ({
