@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import HomeClient from './HomeClient ';
 
 export const metadata: Metadata = {
-  title: 'Convert Case — Free Online Text Case Converter | ConvertCase.in',
+  title: 'Convert Case Online — Free Text Case Converter Tool',
   description:
-    'Instantly convert text to uppercase, lowercase, title case, sentence case, and more. Free, no sign-up, works in your browser.',
+    'Free online case converter. Instantly change text to UPPERCASE, lowercase, Title Case, Sentence case & more. Fast, private, no signup, no ads.',
   keywords: [
     'convert case online',
     'case converter tool',
