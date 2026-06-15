@@ -127,12 +127,13 @@ export default function TitleCaseConverter() {
     <>
       {/* ── SEO Head ── */}
       <Head>
-        <title>Title Case Converter — Free Online Tool</title>
+        <title>Title Case Converter — Free Online Title Case Tool</title>
         <meta
           name="description"
-          content="Convert any text to title case instantly with our free online title case converter. Correctly capitalizes major words and skips minor words. No download required."
+          content="Convert any text to proper Title Case for free. Auto-capitalises each word and skips minor words like and, the & of. Instant, no signup, no ads."
         />
-        <link rel="canonical" href="https://yoursite.com/title-case-converter" />
+        <meta name="keywords" content="title case converter, title case generator, convert to title case online, capitalize title online, title case tool, ap style title case, headline capitalization tool, proper case converter, capitalize each word, free title case converter" /> 
+        <link rel="canonical" href="https://convertcase.in/title-case-converter" />
         <meta property="og:title" content="Title Case Converter — Free Online Tool" />
         <meta
           property="og:description"

@@ -106,13 +106,14 @@ export default function LowercaseToUppercase() {
     return (
         <>
             <Head>
-                <title>Lowercase to Uppercase Converter (Free &amp; Instant)</title>
+                <title>Lowercase to Uppercase Converter — Free Online Tool</title>
                 <meta
                     name="description"
-                    content="Convert lowercase text to uppercase instantly with our free online case converter. No download required. Fast, secure, and easy to use."
+                    content="Convert lowercase text to UPPERCASE instantly. Free online tool to transform small letters into all caps in one click. No signup, no ads, 100% private."
                 />
                 <link rel="canonical" href="/lowercase-to-uppercase" />
-                <meta property="og:title" content="Lowercase to Uppercase Converter (Free & Instant)" />
+                <meta property="og:title" content="Lowercase to Uppercase Converter — Free Online Tool" />
+                <meta name="keywords" content="lowercase to uppercase, lowercase to uppercase converter, convert small letters to capital, lowercase to caps, text to all caps, make text uppercase online, small to capital letter converter, change lowercase to uppercase online, uppercase text converter, free lowercase to uppercase tool" />
                 <meta
                     property="og:description"
                     content="Convert lowercase text to uppercase instantly with our free online case converter. No download required."

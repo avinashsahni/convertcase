@@ -2,12 +2,13 @@
 
 import { useState, useCallback, useRef } from 'react';
 import { useTheme } from '../theme-provider';
+import Head from "next/head";
 
 // ─── Unicode map helpers ──────────────────────────────────────────────────
 
 const ALPHA_UP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const ALPHA_LO = 'abcdefghijklmnopqrstuvwxyz';
-const DIGITS   = '0123456789';
+const DIGITS = '0123456789';
 
 function makeMap(
   upStart: number | null,
@@ -16,9 +17,9 @@ function makeMap(
   overrides: Record<string, string> = {}
 ): Record<string, string> {
   const m: Record<string, string> = {};
-  if (upStart)  for (let i = 0; i < 26; i++) m[ALPHA_UP[i]] = String.fromCodePoint(upStart  + i);
-  if (loStart)  for (let i = 0; i < 26; i++) m[ALPHA_LO[i]] = String.fromCodePoint(loStart  + i);
-  if (digStart) for (let i = 0; i < 10; i++) m[DIGITS[i]]   = String.fromCodePoint(digStart + i);
+  if (upStart) for (let i = 0; i < 26; i++) m[ALPHA_UP[i]] = String.fromCodePoint(upStart + i);
+  if (loStart) for (let i = 0; i < 26; i++) m[ALPHA_LO[i]] = String.fromCodePoint(loStart + i);
+  if (digStart) for (let i = 0; i < 10; i++) m[DIGITS[i]] = String.fromCodePoint(digStart + i);
   return { ...m, ...overrides };
 }
 
@@ -63,8 +64,8 @@ const UNICODE_STYLES: UnicodeStyle[] = [
     id: 'script', label: 'Script', cat: 'script',
     color: 'bg-pink-600', display: 'Sc',
     map: makeMap(0x1D49C, 0x1D4B6, null, {
-      B:'ℬ', E:'ℰ', F:'ℱ', H:'ℋ', I:'ℐ', L:'ℒ', M:'ℳ', R:'ℛ',
-      e:'ℯ', g:'ℊ', o:'ℴ',
+      B: 'ℬ', E: 'ℰ', F: 'ℱ', H: 'ℋ', I: 'ℐ', L: 'ℒ', M: 'ℳ', R: 'ℛ',
+      e: 'ℯ', g: 'ℊ', o: 'ℴ',
     }),
   },
   {
@@ -76,7 +77,7 @@ const UNICODE_STYLES: UnicodeStyle[] = [
     id: 'fraktur', label: 'Fraktur', cat: 'gothic',
     color: 'bg-purple-700', display: 'Fr',
     map: makeMap(0x1D504, 0x1D51E, null, {
-      C:'ℭ', H:'ℌ', I:'ℑ', R:'ℜ', Z:'ℨ',
+      C: 'ℭ', H: 'ℌ', I: 'ℑ', R: 'ℜ', Z: 'ℨ',
     }),
   },
   {
@@ -98,7 +99,7 @@ const UNICODE_STYLES: UnicodeStyle[] = [
     id: 'double-struck', label: 'Double-Struck', cat: 'double',
     color: 'bg-yellow-600', display: 'Ds',
     map: makeMap(0x1D538, 0x1D552, 0x1D7D8, {
-      C:'ℂ', H:'ℍ', N:'ℕ', P:'ℙ', Q:'ℚ', R:'ℝ', Z:'ℤ',
+      C: 'ℂ', H: 'ℍ', N: 'ℕ', P: 'ℙ', Q: 'ℚ', R: 'ℝ', Z: 'ℤ',
     }),
   },
   {
@@ -108,7 +109,7 @@ const UNICODE_STYLES: UnicodeStyle[] = [
       const m: Record<string, string> = {};
       for (let i = 0; i < 26; i++) m[ALPHA_UP[i]] = String.fromCodePoint(0x24B6 + i);
       for (let i = 0; i < 26; i++) m[ALPHA_LO[i]] = String.fromCodePoint(0x24D0 + i);
-      for (let i = 1; i <= 9; i++) m[String(i)]   = String.fromCodePoint(0x245F + i);
+      for (let i = 1; i <= 9; i++) m[String(i)] = String.fromCodePoint(0x245F + i);
       m['0'] = '⓪';
       return m;
     })(),
@@ -120,7 +121,7 @@ const UNICODE_STYLES: UnicodeStyle[] = [
       const m: Record<string, string> = {};
       for (let i = 0; i < 26; i++) m[ALPHA_UP[i]] = String.fromCodePoint(0xFF21 + i);
       for (let i = 0; i < 26; i++) m[ALPHA_LO[i]] = String.fromCodePoint(0xFF41 + i);
-      for (let i = 0; i < 10; i++) m[DIGITS[i]]   = String.fromCodePoint(0xFF10 + i);
+      for (let i = 0; i < 10; i++) m[DIGITS[i]] = String.fromCodePoint(0xFF10 + i);
       return m;
     })(),
   },
@@ -128,43 +129,43 @@ const UNICODE_STYLES: UnicodeStyle[] = [
     id: 'superscript', label: 'Superscript', cat: 'other',
     color: 'bg-sky-600', display: 'Sp',
     map: {
-      a:'ᵃ',b:'ᵇ',c:'ᶜ',d:'ᵈ',e:'ᵉ',f:'ᶠ',g:'ᵍ',h:'ʰ',i:'ⁱ',j:'ʲ',
-      k:'ᵏ',l:'ˡ',m:'ᵐ',n:'ⁿ',o:'ᵒ',p:'ᵖ',r:'ʳ',s:'ˢ',t:'ᵗ',u:'ᵘ',
-      v:'ᵛ',w:'ʷ',x:'ˣ',y:'ʸ',z:'ᶻ',A:'ᴬ',B:'ᴮ',D:'ᴰ',E:'ᴱ',G:'ᴳ',
-      H:'ᴴ',I:'ᴵ',J:'ᴶ',K:'ᴷ',L:'ᴸ',M:'ᴹ',N:'ᴺ',O:'ᴼ',P:'ᴾ',R:'ᴿ',
-      T:'ᵀ',U:'ᵁ',V:'ⱽ',W:'ᵂ','0':'⁰','1':'¹','2':'²','3':'³','4':'⁴',
-      '5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹',
+      a: 'ᵃ', b: 'ᵇ', c: 'ᶜ', d: 'ᵈ', e: 'ᵉ', f: 'ᶠ', g: 'ᵍ', h: 'ʰ', i: 'ⁱ', j: 'ʲ',
+      k: 'ᵏ', l: 'ˡ', m: 'ᵐ', n: 'ⁿ', o: 'ᵒ', p: 'ᵖ', r: 'ʳ', s: 'ˢ', t: 'ᵗ', u: 'ᵘ',
+      v: 'ᵛ', w: 'ʷ', x: 'ˣ', y: 'ʸ', z: 'ᶻ', A: 'ᴬ', B: 'ᴮ', D: 'ᴰ', E: 'ᴱ', G: 'ᴳ',
+      H: 'ᴴ', I: 'ᴵ', J: 'ᴶ', K: 'ᴷ', L: 'ᴸ', M: 'ᴹ', N: 'ᴺ', O: 'ᴼ', P: 'ᴾ', R: 'ᴿ',
+      T: 'ᵀ', U: 'ᵁ', V: 'ⱽ', W: 'ᵂ', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
+      '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
     },
   },
   {
     id: 'subscript', label: 'Subscript', cat: 'other',
     color: 'bg-sky-700', display: 'Sb',
     map: {
-      a:'ₐ',e:'ₑ',h:'ₕ',i:'ᵢ',j:'ⱼ',k:'ₖ',l:'ₗ',m:'ₘ',n:'ₙ',o:'ₒ',
-      p:'ₚ',r:'ᵣ',s:'ₛ',t:'ₜ',u:'ᵤ',v:'ᵥ',x:'ₓ',
-      '0':'₀','1':'₁','2':'₂','3':'₃','4':'₄','5':'₅','6':'₆','7':'₇','8':'₈','9':'₉',
+      a: 'ₐ', e: 'ₑ', h: 'ₕ', i: 'ᵢ', j: 'ⱼ', k: 'ₖ', l: 'ₗ', m: 'ₘ', n: 'ₙ', o: 'ₒ',
+      p: 'ₚ', r: 'ᵣ', s: 'ₛ', t: 'ₜ', u: 'ᵤ', v: 'ᵥ', x: 'ₓ',
+      '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄', '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉',
     },
   },
   {
     id: 'smallcaps', label: 'Small Caps', cat: 'other',
     color: 'bg-rose-600', display: 'Sc',
     map: {
-      a:'ᴀ',b:'ʙ',c:'ᴄ',d:'ᴅ',e:'ᴇ',f:'ꜰ',g:'ɢ',h:'ʜ',i:'ɪ',j:'ᴊ',
-      k:'ᴋ',l:'ʟ',m:'ᴍ',n:'ɴ',o:'ᴏ',p:'ᴘ',q:'ǫ',r:'ʀ',s:'ꜱ',t:'ᴛ',
-      u:'ᴜ',v:'ᴠ',w:'ᴡ',x:'x',y:'ʏ',z:'ᴢ',
+      a: 'ᴀ', b: 'ʙ', c: 'ᴄ', d: 'ᴅ', e: 'ᴇ', f: 'ꜰ', g: 'ɢ', h: 'ʜ', i: 'ɪ', j: 'ᴊ',
+      k: 'ᴋ', l: 'ʟ', m: 'ᴍ', n: 'ɴ', o: 'ᴏ', p: 'ᴘ', q: 'ǫ', r: 'ʀ', s: 'ꜱ', t: 'ᴛ',
+      u: 'ᴜ', v: 'ᴠ', w: 'ᴡ', x: 'x', y: 'ʏ', z: 'ᴢ',
     },
   },
   {
     id: 'upsidedown', label: 'Upside Down', cat: 'other',
     color: 'bg-red-600', display: 'UD',
     map: {
-      a:'ɐ',b:'q',c:'ɔ',d:'p',e:'ǝ',f:'ɟ',g:'ƃ',h:'ɥ',i:'ᴉ',j:'ɾ',
-      k:'ʞ',l:'l',m:'ɯ',n:'u',o:'o',p:'d',q:'b',r:'ɹ',s:'s',t:'ʇ',
-      u:'n',v:'ʌ',w:'ʍ',x:'x',y:'ʎ',z:'z',A:'∀',B:'ꓭ',C:'Ɔ',D:'ᗡ',
-      E:'Ǝ',F:'Ⅎ',G:'⅁',H:'H',I:'I',J:'ᒋ',K:'ʞ',L:'⅂',M:'W',N:'N',
-      O:'O',P:'Ԁ',Q:'Ό',R:'ɹ',S:'S',T:'⊥',U:'∩',V:'Λ',W:'M',X:'X',
-      Y:'⅄',Z:'Z','0':'0','1':'Ɩ','2':'ᄅ','3':'Ɛ','4':'ᔭ','5':'ϛ',
-      '6':'9','7':'Ɫ','8':'8','9':'6',
+      a: 'ɐ', b: 'q', c: 'ɔ', d: 'p', e: 'ǝ', f: 'ɟ', g: 'ƃ', h: 'ɥ', i: 'ᴉ', j: 'ɾ',
+      k: 'ʞ', l: 'l', m: 'ɯ', n: 'u', o: 'o', p: 'd', q: 'b', r: 'ɹ', s: 's', t: 'ʇ',
+      u: 'n', v: 'ʌ', w: 'ʍ', x: 'x', y: 'ʎ', z: 'z', A: '∀', B: 'ꓭ', C: 'Ɔ', D: 'ᗡ',
+      E: 'Ǝ', F: 'Ⅎ', G: '⅁', H: 'H', I: 'I', J: 'ᒋ', K: 'ʞ', L: '⅂', M: 'W', N: 'N',
+      O: 'O', P: 'Ԁ', Q: 'Ό', R: 'ɹ', S: 'S', T: '⊥', U: '∩', V: 'Λ', W: 'M', X: 'X',
+      Y: '⅄', Z: 'Z', '0': '0', '1': 'Ɩ', '2': 'ᄅ', '3': 'Ɛ', '4': 'ᔭ', '5': 'ϛ',
+      '6': '9', '7': 'Ɫ', '8': '8', '9': '6',
     },
   },
 ];
@@ -202,7 +203,23 @@ function StyleRow({
     setTimeout(() => setCopied(false), 1500);
   }, [converted]);
 
-  return (
+  return (<>
+    <Head>
+      <title>Unicode Text Converter — Fancy Text Generator Online  </title>
+      <meta
+        name="description"
+        content="Convert plain text into Unicode styles — bold, italic, script & more fancy fonts. Free online Unicode text generator for social media bios. No signup.  "
+      />
+      <link rel="canonical" href="/unicode-text-converter" />
+      <meta property="og:title" content="Unicode Text Converter — Fancy Text Generator Online  " />
+      <meta name="keywords" content="unicode text converter, fancy text generator, unicode font converter, stylish text generator, cool text generator online, bold italic text generator, social media font converter, instagram bio fonts, unicode character converter, free fancy text generator" />
+      <meta
+        property="og:description"
+        content="Convert plain text into Unicode styles — bold, italic, script & more fancy fonts. Free online Unicode text generator for social media bios. No signup.  "
+      />
+      <meta property="og:type" content="website" />
+      <meta name="twitter:card" content="summary_large_image" />
+    </Head>
     <div
       className="flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-150 hover:translate-x-1"
       style={{
@@ -252,6 +269,8 @@ function StyleRow({
         )}
       </button>
     </div>
+  </>
+
   );
 }
 
@@ -373,7 +392,7 @@ export default function UnicodeConverterPage() {
             </p>
           </div>
         </div>
-        
+
 
         {/* Results list */}
         <div className="flex flex-col gap-2">

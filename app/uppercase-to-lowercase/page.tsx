@@ -107,17 +107,18 @@ export default function UppercaseToLowercase() {
     <>
       {/* ── SEO Head ── */}
       <Head>
-        <title>Uppercase to Lowercase Converter (Free &amp; Instant)</title>
+        <title>Uppercase to Lowercase Converter — Free Online Tool</title>
         <meta
           name="description"
-          content="Convert uppercase to lowercase instantly with our free online case converter. No download required. Fast, secure, and easy to use."
+          content="Convert UPPERCASE text to lowercase instantly. Free online tool to fix Caps Lock mistakes in one click. No signup, no ads, processed in your browser."
         />
         <link rel="canonical" href="/uppercase-to-lowercase" />
-        <meta property="og:title" content="Uppercase to Lowercase Converter (Free & Instant)" />
+        <meta property="og:title" content="Uppercase to Lowercase Converter — Free Online Tool" />
         <meta
           property="og:description"
-          content="Convert uppercase to lowercase instantly with our free online case converter."
+          content="Convert UPPERCASE text to lowercase instantly. Free online tool to fix Caps Lock mistakes in one click."
         />
+        <meta name="keywords" content="uppercase to lowercase, uppercase to lowercase converter, convert capital to small letters, caps to lowercase, all caps to lowercase, fix caps lock text, capital to small letter converter, change uppercase to lowercase online, lowercase text converter, free uppercase to lowercase tool" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>

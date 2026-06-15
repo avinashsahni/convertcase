@@ -117,9 +117,10 @@ export default function SentenceCaseConverter() {
         <title>Sentence Case Converter — Free Online Tool</title>
         <meta
           name="description"
-          content="Convert any text to sentence case instantly with our free online sentence case converter. Capitalizes the first letter of each sentence automatically. No download required."
+          content="Convert text to proper sentence case instantly. Auto-capitalises the first letter of every sentence. Free, fast, no signup — runs in your browser."
         />
-        <link rel="canonical" href="https://yoursite.com/sentence-case-converter" />
+        <meta name="keywords" content="sentence case converter, sentence case generator, convert to sentence case online, capitalize first letter of sentence, sentence case tool, fix capitalization online, capitalize only first letter, normal case converter, text to sentence case, free sentence case converter" />
+        <link rel="canonical" href="https://convertcase.in/sentence-case-converter" />
         <meta property="og:title" content="Sentence Case Converter — Free Online Tool" />
         <meta
           property="og:description"

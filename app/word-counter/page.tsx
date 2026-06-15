@@ -113,13 +113,14 @@ export default function WordCounter() {
   return (
     <>
       <Head>
-        <title>Word Counter — Count Words, Characters & More (Free)</title>
+        <title>Word Counter — Free Online Word & Character Counter  </title>
         <meta
           name="description"
-          content="Count words, characters, sentences, and paragraphs instantly with our free online word counter. No download required. Fast, accurate, and easy to use."
+          content="Count words, characters, sentences and lines in your text instantly. Free online word counter with live results. No signup, no ads, 100% private."
         />
+        <meta name="keywords" content="word counter, word count tool, character counter, online word counter, count words and characters, sentence counter, line counter tool, free word counter online, text word count checker, character count tool" />
         <link rel="canonical" href="/word-counter" />
-        <meta property="og:title" content="Word Counter — Count Words, Characters & More (Free)" />
+        <meta property="og:title" content="Word Counter — Free Online Word & Character Counter  " />
         <meta
           property="og:description"
           content="Count words, characters, sentences, and paragraphs instantly with our free online word counter."
