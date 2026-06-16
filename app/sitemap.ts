@@ -52,5 +52,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}${path}`,
   }));
 
-  return [...staticEntries, ...toolEntries, ...blogEntries];
+  return [...toolEntries, ...staticEntries,  ...blogEntries];
 }
