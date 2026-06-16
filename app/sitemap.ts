@@ -5,9 +5,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://convertcase.in';
 
   const staticPages = [
-    { path: '', priority: 1.0, changeFrequency: 'daily' as const },
-    { path: '/privacy-policy', priority: 0.5, changeFrequency: 'yearly' as const },
-    { path: '/terms', priority: 0.5, changeFrequency: 'yearly' as const },
+    { path: '',  },
+    { path: '/privacy-policy' },
+    { path: '/terms' },
   ];
 
   const toolPages = [
@@ -44,13 +44,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}/blog/${b.slug}`,
   }));
 
-  const staticEntries = staticPages.map(({ path, priority, changeFrequency }) => ({
+  const staticEntries = staticPages.map(({ path }) => ({
     url: `${baseUrl}${path}`,
   }));
 
   const toolEntries = toolPages.map((path) => ({
     url: `${baseUrl}${path}`,
-    
   }));
 
   return [...staticEntries, ...toolEntries, ...blogEntries];
