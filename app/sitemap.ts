@@ -1,13 +1,13 @@
+import { MetadataRoute } from 'next';
 import { blogs } from '../lib/blogs';
 
-export default async function GET() {
+export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://convertcase.in';
-  const now = new Date().toISOString();
 
   const staticPages = [
-    { path: '/', priority: '1.0' },
-    { path: '/privacy-policy', priority: '0.8' },
-    { path: '/terms', priority: '0.8' },
+    { path: '',  },
+    { path: '/privacy-policy' },
+    { path: '/terms' },
   ];
 
   const toolPages = [
@@ -37,38 +37,20 @@ export default async function GET() {
     '/css-formatter',
     '/csv-to-json',
     '/cursed-text',
-    '/cute-font-generator',
+    '/cute-font-generator'
   ];
 
-  const urlTag = (loc: string, priority: string) => `
-  <url>
-    <loc>${loc}</loc>
-    <lastmod>${now}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>${priority}</priority>
-  </url>`;
+  const blogEntries = blogs.map((b) => ({
+    url: `${baseUrl}/blog/${b.slug}`,
+  }));
 
-  const staticEntries = staticPages
-    .map(({ path, priority }) => urlTag(`${baseUrl}${path}`, priority))
-    .join('');
+  const staticEntries = staticPages.map(({ path }) => ({
+    url: `${baseUrl}${path}`,
+  }));
 
-  const toolEntries = toolPages
-    .map((path) => urlTag(`${baseUrl}${path}`, '0.9'))
-    .join('');
+  const toolEntries = toolPages.map((path) => ({
+    url: `${baseUrl}${path}`,
+  }));
 
-  const blogEntries = blogs
-    .map((b) => urlTag(`${baseUrl}/blog/${b.slug}`, '0.7'))
-    .join('');
-
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${toolEntries}${staticEntries}${blogEntries}
-</urlset>`;
-
-  return new Response(xml, {
-    headers: {
-      'Content-Type': 'application/xml; charset=utf-8',
-      'Cache-Control': 'public, max-age=3600, s-maxage=3600',
-    },
-  });
+  return [...toolEntries, ...staticEntries,  ...blogEntries];
 }
