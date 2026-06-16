@@ -3,11 +3,27 @@ import { blogs } from '../lib/blogs';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://convertcase.in';
+  const now = new Date();
 
-  const staticPages = [
-    { path: '',  },
-    { path: '/privacy-policy' },
-    { path: '/terms' },
+  const staticPages: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/privacy-policy`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/terms`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
   ];
 
   const toolPages = [
@@ -37,20 +53,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/css-formatter',
     '/csv-to-json',
     '/cursed-text',
-    '/cute-font-generator'
+    '/cute-font-generator',
   ];
 
-  const blogEntries = blogs.map((b) => ({
+  const toolEntries: MetadataRoute.Sitemap = toolPages.map((path) => ({
+    url: `${baseUrl}${path}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.9,
+  }));
+
+  const blogEntries: MetadataRoute.Sitemap = blogs.map((b) => ({
     url: `${baseUrl}/blog/${b.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.7,
   }));
 
-  const staticEntries = staticPages.map(({ path }) => ({
-    url: `${baseUrl}${path}`,
-  }));
-
-  const toolEntries = toolPages.map((path) => ({
-    url: `${baseUrl}${path}`,
-  }));
-
-  return [...toolEntries, ...staticEntries,  ...blogEntries];
+  return [...toolEntries, ...staticPages,  ...blogEntries];
 }
