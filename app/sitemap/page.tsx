@@ -29,24 +29,45 @@ const staticSections: SiteSection[] = [
     ],
   },
   {
+    category: 'Tools',
+    icon: '🔨',
+    entries: [
+      { label: 'Uppercase to Lowercase', href: '/uppercase-to-lowercase', description: 'Convert ALL CAPS text to lowercase instantly' },
+      { label: 'Lowercase to Uppercase', href: '/lowercase-to-uppercase', description: 'Convert lowercase text to UPPERCASE instantly' },
+      { label: 'Sentence Case Converter', href: '/sentence-case-converter', description: 'Capitalize the first letter of each sentence' },
+      { label: 'Title Case Converter', href: '/title-case-converter', description: 'Convert text to Title Case for headings' },
+      { label: 'Camel Case Converter', href: '/camel-case-converter', description: 'Convert text to camelCase for programming' },
+      { label: 'Word Counter', href: '/word-counter', description: 'Count words, characters, sentences and paragraphs' },
+      { label: 'Unicode Text Converter', href: '/unicode-text-converter', description: 'Convert text to fancy Unicode styles' },
+      { label: 'Slug Case Converter', href: '/slug-case-converter', description: 'Convert text to URL-friendly slug format' },
+      { label: 'Snake Case Converter', href: '/snake-case-converter', description: 'Convert text to snake_case for programming' },
+      { label: 'Pascal Case Converter', href: '/pascal-case-converter', description: 'Convert text to PascalCase for class names' },
+      { label: 'Kebab Case Converter', href: '/kebab-case-converter', description: 'Convert text to kebab-case for CSS and URLs' },
+      { label: 'Remove Duplicate Lines', href: '/remove-duplicate-lines', description: 'Remove repeated lines from your text' },
+      { label: 'Reverse Text', href: '/reverse-text', description: 'Reverse any text string instantly' },
+      { label: 'Strikethrough Text Generator', href: '/strikethrough-text-generator', description: 'Generate ̶s̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶ text for social media' },
+      { label: 'Invisible Text Generator', href: '/invisible-text-generator', description: 'Generate invisible/blank Unicode characters' },
+      { label: 'Aesthetic Text Generator', href: '/aesthetic-text-generator', description: 'Convert text to aesthetic ｖａｐｏｒｗａｖｅ style' },
+      { label: 'ASCII Art Generator', href: '/ascii-art-generator', description: 'Convert text to ASCII art lettering' },
+      { label: 'Base64 Decode / Encode', href: '/base64-decode-encode', description: 'Encode or decode Base64 strings online' },
+      { label: 'APA Citation Generator', href: '/apa-citation-generator', description: 'Generate APA format citations automatically' },
+      { label: 'Binary Code Translator', href: '/binary-code-translator', description: 'Translate text to binary code and back' },
+      { label: 'Bold Text Generator', href: '/bold-text-generator', description: 'Generate 𝗯𝗼𝗹𝗱 Unicode text for any platform' },
+      { label: 'Bubble Text Generator', href: '/bubble-text-generator', description: 'Convert text to ⓑⓤⓑⓑⓛⓔ letters' },
+      { label: 'Caesar Cipher Encryption', href: '/caesar-cipher-encryption', description: 'Encrypt and decrypt text with Caesar cipher' },
+      { label: 'CSS Formatter', href: '/css-formatter', description: 'Format and beautify CSS code online' },
+      { label: 'CSV to JSON', href: '/csv-to-json', description: 'Convert CSV data to JSON format instantly' },
+      { label: 'Cursed Text', href: '/cursed-text', description: 'Generate z̴͎̓a̷͚͑l̸͍̈g̷̙͝o̷͚͑ cursed text online' },
+      { label: 'Cute Font Generator', href: '/cute-font-generator', description: 'Generate cute Unicode fonts for social media' },
+    ],
+  },
+  {
     category: 'Legal',
     icon: '§',
     entries: [
-      {
-        label: 'Privacy Policy',
-        href: '/privacy-policy',
-        description: 'How we collect, store and use your data',
-      },
-      {
-        label: 'Terms of Service',
-        href: '/terms',
-        description: 'Rules governing the use of ConvertCase',
-      },
-      {
-        label: 'Site Map',
-        href: '/sitemap',
-        description: 'Complete overview of all pages on this website',
-      },
+      { label: 'Privacy Policy', href: '/privacy-policy', description: 'How we collect, store and use your data' },
+      { label: 'Terms of Service', href: '/terms', description: 'Rules governing the use of ConvertCase' },
+      { label: 'Site Map', href: '/sitemap', description: 'Complete overview of all pages on this website' },
     ],
   },
 ];
@@ -81,7 +102,6 @@ export default function SiteMapPage() {
   const textMuted = isDark ? '#94a3b8' : '#64748b';
   const linkColor = '#818cf8';
 
-  // Group blog posts by category
   const blogCategories = Array.from(new Set(blogs.map((b) => b.category)));
   const blogSections: SiteSection[] = blogCategories.map((cat) => ({
     category: categoryLabels[cat] ?? cat,
@@ -103,7 +123,6 @@ export default function SiteMapPage() {
       key={section.category}
       style={{ background: cardBg, border: `1px solid ${border}`, borderRadius: 12, overflow: 'hidden' }}
     >
-      {/* Category header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '0.85rem 1.25rem', borderBottom: `1px solid ${border}`, background: isDark ? 'rgba(99,102,241,0.07)' : 'rgba(99,102,241,0.04)' }}>
         <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 28, height: 28, borderRadius: 7, background: 'linear-gradient(135deg, #6366f1, #ec4899)', color: '#fff', fontSize: 13, fontWeight: 700 }}>
           {section.icon}
@@ -114,7 +133,6 @@ export default function SiteMapPage() {
         </span>
       </div>
 
-      {/* Entries */}
       <div>
         {section.entries.map((entry, i) => (
           <div
@@ -123,12 +141,10 @@ export default function SiteMapPage() {
             onMouseEnter={(e) => (e.currentTarget.style.background = rowHover)}
             onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
           >
-            {/* URL badge */}
             <span style={{ flexShrink: 0, fontSize: '0.65rem', fontWeight: 700, color: linkColor, background: isDark ? 'rgba(99,102,241,0.12)' : 'rgba(99,102,241,0.08)', border: `1px solid ${isDark ? 'rgba(99,102,241,0.25)' : 'rgba(99,102,241,0.2)'}`, borderRadius: 6, padding: '2px 7px', maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
               {entry.href}
             </span>
 
-            {/* Label + description */}
             <div style={{ flex: 1, minWidth: 0 }}>
               <Link href={entry.href} style={{ fontWeight: 700, fontSize: '0.85rem', color: linkColor, textDecoration: 'none', display: 'block', marginBottom: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 {entry.label}
@@ -138,7 +154,6 @@ export default function SiteMapPage() {
               </p>
             </div>
 
-            {/* Arrow */}
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke={linkColor} style={{ flexShrink: 0, opacity: 0.6 }}>
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
@@ -152,7 +167,6 @@ export default function SiteMapPage() {
     <main style={{ minHeight: '100vh', background: bg, color: textMain, paddingTop: 'calc(56px + 3rem)', paddingBottom: '4rem', transition: 'background 0.3s, color 0.3s', fontFamily: '"Courier New", Courier, monospace' }}>
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 1.5rem' }}>
 
-        {/* Page title */}
         <div style={{ marginBottom: '2.5rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
             <span style={{ display: 'inline-block', width: 4, height: 36, borderRadius: 2, background: 'linear-gradient(180deg, #6366f1, #ec4899)' }} />
@@ -166,7 +180,7 @@ export default function SiteMapPage() {
           </p>
         </div>
 
-        {/* Static sections */}
+        {/* Static + Tools + Legal sections */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginBottom: '1.25rem' }}>
           {staticSections.map(renderSection)}
         </div>
@@ -180,7 +194,6 @@ export default function SiteMapPage() {
           </span>
         </div>
 
-        {/* Blog sections grouped by category */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
           {blogSections.map(renderSection)}
         </div>
@@ -191,10 +204,13 @@ export default function SiteMapPage() {
             Total pages: <strong style={{ color: textMain }}>{totalPages}</strong>
           </span>
           <span style={{ fontSize: '0.78rem', color: textMuted }}>
+            Tools: <strong style={{ color: textMain }}>27</strong>
+          </span>
+          <span style={{ fontSize: '0.78rem', color: textMuted }}>
             Blog posts: <strong style={{ color: textMain }}>{blogs.length}</strong>
           </span>
           <span style={{ fontSize: '0.78rem', color: textMuted }}>
-            Last updated: <strong style={{ color: textMain }}>April {new Date().getFullYear()}</strong>
+            Last updated: <strong style={{ color: textMain }}>{new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</strong>
           </span>
           <span style={{ fontSize: '0.78rem', color: textMuted }}>convertcase.in</span>
         </div>
