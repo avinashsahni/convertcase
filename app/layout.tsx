@@ -4,6 +4,7 @@ import { ThemeProvider } from './theme-provider';
 import Header from './header';
 import Footer from './footer';
 import { Analytics } from "@vercel/analytics/next"
+import CookieBanner from './Cookiebanner';
 
 export const metadata: Metadata = {
   title: 'Convert Case Online – Uppercase, Lowercase, Title Case Tool (Free)',
@@ -103,6 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <div style={{ flex: 1 }}>{children}</div>
           <Footer />
+          <CookieBanner />
         </ThemeProvider>
       </body>
     </html>
