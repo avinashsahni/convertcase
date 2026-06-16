@@ -1,6 +1,6 @@
 import { blogs } from '../lib/blogs';
 
-export async function GET() {
+export default async function GET() {
   const baseUrl = 'https://convertcase.in';
   const now = new Date().toISOString();
 
