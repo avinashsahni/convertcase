@@ -7,14 +7,12 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: '/',
         disallow: [
-          '/*?*',        // block all query params (deduplication)
-          '/api/',       // API routes
-          '/admin/',     // admin panel
-          '/_next/',     // Next.js internals
+          '/api/',
+          '/admin/',
+          '/_next/',
         ],
       },
     ],
     sitemap: 'https://convertcase.in/sitemap.xml',
-    host: 'https://convertcase.in',
   };
 }
