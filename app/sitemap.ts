@@ -50,6 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const toolEntries = toolPages.map((path) => ({
     url: `${baseUrl}${path}`,
+    
   }));
 
   return [...staticEntries, ...toolEntries, ...blogEntries];
