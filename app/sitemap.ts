@@ -42,20 +42,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const blogEntries = blogs.map((b) => ({
     url: `${baseUrl}/blog/${b.slug}`,
-    changeFrequency: 'weekly' as const,
-    priority: 0.7,
   }));
 
   const staticEntries = staticPages.map(({ path, priority, changeFrequency }) => ({
     url: `${baseUrl}${path}`,
-    changeFrequency,
-    priority,
   }));
 
   const toolEntries = toolPages.map((path) => ({
     url: `${baseUrl}${path}`,
-    changeFrequency: 'monthly' as const,
-    priority: 0.9,
   }));
 
   return [...staticEntries, ...toolEntries, ...blogEntries];
