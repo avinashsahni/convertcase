@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 import { blogs } from '../lib/blogs';
 
+export const dynamic = 'force-dynamic';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://convertcase.in';
 
