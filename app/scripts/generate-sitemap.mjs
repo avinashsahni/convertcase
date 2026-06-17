@@ -1,5 +1,5 @@
-const fs = require('fs');
-const { blogs } = require('../app/lib/blogs');
+import fs from 'fs';
+import { blogs } from '../../lib/blogs.ts';
 
 const baseUrl = 'https://convertcase.in';
 
@@ -66,4 +66,4 @@ ${urls}
 </urlset>`;
 
 fs.writeFileSync('./public/sitemap.xml', xml);
-console.log('Sitemap generated at public/sitemap.xml');
+console.log('✅ Sitemap generated at public/sitemap.xml');
