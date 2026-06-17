@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://convertcase.in';
 
   const staticPages = [
-    { path: '',  },
+    { path: '', },
     { path: '/privacy-policy' },
     { path: '/terms' },
   ];
@@ -44,13 +44,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}/blog/${b.slug}`,
   }));
 
-  const staticEntries = staticPages.map(({ path }) => ({
-    url: `${baseUrl}${path}`,
-  }));
+  // const staticEntries = staticPages.map(({ path }) => ({
+  //   url: `${baseUrl}${path}`,
+  // }));
 
+  // const toolEntries = toolPages.map((path) => ({
+  //   url: `${baseUrl}${path}`,
+  // }));
   const toolEntries = toolPages.map((path) => ({
     url: `${baseUrl}${path}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
   }));
 
-  return [...toolEntries, ...staticEntries,  ...blogEntries];
+  const staticEntries = staticPages.map(({ path }) => ({
+    url: `${baseUrl}${path}`,
+    lastModified: new Date(),
+    changeFrequency: 'yearly' as const,
+    priority: path === '' ? 1.0 : 0.5,
+  }));
+
+  return [...toolEntries, ...staticEntries, ...blogEntries];
 }
