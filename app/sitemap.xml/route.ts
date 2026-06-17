@@ -71,9 +71,10 @@ ${urls}
 </urlset>`;
 
   return new NextResponse(xml, {
-    headers: {
-      'Content-Type': 'application/xml; charset=UTF-8',
-      'Cache-Control': 'public, max-age=3600',
-    },
-  });
+  headers: {
+    'Content-Type': 'application/xml; charset=UTF-8',
+    'Content-Encoding': 'identity',  // 👈 add this
+    'Cache-Control': 'no-store',
+  },
+});
 }
