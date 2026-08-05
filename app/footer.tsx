@@ -70,7 +70,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-          <p style={{ fontSize: '0.75rem', margin: 0 }}>
+        <p style={{ fontSize: '0.75rem', margin: 0 }}>
           Copyright ©2025–{new Date().getFullYear()} ConvertCase.in  &nbsp;|&nbsp; Last Updated (Apr {new Date().getFullYear()}) &nbsp;|&nbsp; Concept by{' '}
           <a
             href="https://convertcase.in"
@@ -88,6 +88,8 @@ export default function Footer() {
         {/* Nav links */}
         <nav style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', fontSize: '0.75rem' }}>
           {[
+            { href: '/about', label: 'About Us' },
+            { href: '/contact', label: 'Contact Us' },
             { href: '/privacy-policy', label: 'Privacy Policy' },
             { href: '/terms', label: 'Terms of Service' },
             { href: '/sitemap', label: 'Site Map' },
